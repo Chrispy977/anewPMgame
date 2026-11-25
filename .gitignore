@@ -1,0 +1,7 @@
+*.zip
+test-*.png
+v2-*.png
+js/selftest.js
+.DS_Store
+anewPMgame/
+PRIORITIZE_v2/

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101728">
+  <title>PRIORITIZE — Ship the Demo</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="data/scenario.js"></script>
+  <script defer src="js/engine.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" id="brand" aria-label="PRIORITIZE home"><span class="brand-icon">P</span> PRIORITIZE</a>
+    <div class="top-right">
+      <div class="music" id="music">
+        <button id="mute" class="music-btn" aria-label="Mute music" aria-pressed="false" title="Mute / unmute">🔊</button>
+        <input id="volume" class="music-vol" type="range" min="0" max="100" value="18" aria-label="Music volume">
+      </div>
+      <span class="top-label">A DELIVERY SIMULATOR <span class="version">/ MVP 02</span></span>
+    </div>
+  </header>
+  <audio id="bgm" src="assets/music.mp3" loop preload="auto"></audio>
+  <main class="shell">
+    <div class="progress" aria-label="Game progress">
+      <span data-step="intro" class="active"><b>01</b> THE BRIEF</span><i></i>
+      <span data-step="board"><b>02</b> SPRINTS</span><i></i>
+      <span data-step="event"><b>03</b> THE PLAYTEST</span><i></i>
+      <span data-step="result"><b>04</b> DEBRIEF</span>
+    </div>
+
+    <!-- INTRO -->
+    <section id="intro" class="screen">
+      <div class="hero">
+        <div>
+          <span class="eyebrow"><span class="dot"></span> SCENARIO 01 · GAME DEVELOPMENT</span>
+          <h1>Big ideas.<br><em>Small team.</em><br>Fixed deadline.</h1>
+          <p class="lede">Your studio has a showcase invite. Plan the work sprint by sprint, staff each task with the right people, and keep the bug count under control before the demo ships.</p>
+          <div class="hero-actions"><button id="start" class="button primary">Start the scenario <span>↗</span></button><span class="tiny">A short, single-player simulation</span></div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="art-card"><span class="art-label">RELEASE BRIEF / 01</span><div class="art-pixel">✦</div><strong>SHIP<br>THE DEMO</strong><span class="art-line">LANTERN FORGE GAMES</span><span class="art-chip">IN PROGRESS <span>●</span></span></div>
+          <span class="floating floating-one" id="hero-deadline"></span>
+          <span class="floating floating-two" id="hero-budget"></span>
+        </div>
+      </div>
+      <div class="intro-foot">
+        <div><span>01 / STAFF</span><p>Assign an owner, and a QA tester, to each task.</p></div>
+        <div><span>02 / ADVANCE</span><p>Run the sprint and see what actually shipped.</p></div>
+        <div><span>03 / SHIP</span><p>Reach the showcase under the bug cap.</p></div>
+      </div>
+    </section>
+
+    <!-- BOARD -->
+    <section id="board" class="screen" hidden>
+      <div class="board-head">
+        <div>
+          <span class="eyebrow" id="sprint-label">SPRINT 1 OF 3</span>
+          <h2>Plan the <em>sprint</em></h2>
+          <p>Drag nothing — just assign people. Each person has <b id="cap-note"></b> days of capacity per sprint. You only pay for work actually done.</p>
+        </div>
+        <div class="board-metrics" id="board-metrics"></div>
+      </div>
+
+      <div class="view-toggle" role="tablist" aria-label="Board view">
+        <button id="tab-board" class="toggle-btn active" role="tab" aria-selected="true">▦ Board</button>
+        <button id="tab-gantt" class="toggle-btn" role="tab" aria-selected="false">▭ Timeline</button>
+      </div>
+
+      <div id="view-board">
+        <div class="team-strip" id="team-strip"></div>
+        <div class="kanban" id="kanban"></div>
+      </div>
+      <div id="view-gantt" hidden><div class="gantt" id="gantt"></div></div>
+
+      <div class="board-foot">
+        <div id="board-error" class="error" role="status"></div>
+        <div class="foot-actions">
+          <button id="advance" class="button primary">Run Sprint 1 <span>→</span></button>
+          <span class="fineprint">Deterministic model: the same plan always produces the same result. Estimates labor and bugs, not every real risk.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENT -->
+    <section id="event" class="screen" hidden>
+      <div class="section-head"><div><span class="eyebrow">03 / A CHANGE OF PLANS</span><h2 id="event-title"></h2><p id="event-text"></p></div></div>
+      <div class="event-layout">
+        <div>
+          <div class="notice"><span>✦</span><div><strong>THE DEMO IS BUILT.</strong><p id="event-sub"></p></div></div>
+          <div class="section-label"><span>CHOOSE YOUR RESPONSE</span><small>EVERY OPTION HAS A TRADEOFF</small></div>
+          <div id="choices" class="choices"></div>
+        </div>
+        <aside class="forecast"><span class="eyebrow">AT THE SHOWCASE</span><h3>Where you stand</h3><div id="event-stand"></div></aside>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section id="result" class="screen" hidden>
+      <div class="section-head"><div><span class="eyebrow">04 / PROJECT DEBRIEF</span><h2>What did we <em>learn?</em></h2><p>There is rarely a perfect plan. What matters is understanding the tradeoffs you made.</p></div></div>
+      <div id="result-content"></div>
+      <div class="result-actions"><button id="restart" class="button primary">Play again <span>↗</span></button></div>
+    </section>
+  </main>
+  <footer><span>PRIORITIZE <i>✦</i> A learning prototype</span><span>BUILT FOR THE DECISIONS BETWEEN THE DEADLINES.</span></footer>
+</body>
+</html>
